@@ -33,7 +33,14 @@
                     <br>
                 </fieldset>
             </form>
-            <div class="container row form-group" id="mainDiv"v-html="result">{{ result }}</div>
+            <div class="container row form-group" id="mainDiv">
+                <div class="row col-sm-5" v-if="result != null">
+                    Found {{ (result != null)?result.totalItems: '' }}
+                </div>
+                <div class="row">
+                    <book-display v-if="result != null" v-for="(book, index) in result.items" :key="book.id" :book="JSON.stringify(book)"></book-display>
+                </div>
+            </div>
         </div>
         <br>
         <footer class='container'>
@@ -45,6 +52,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <!-- <script src="js/script.js"></script> -->
         <script src="js/main.js"></script>
+        <script src="js/components/bookDisplay.js"></script>
 
         <!-- Mount app -->
         <script>
